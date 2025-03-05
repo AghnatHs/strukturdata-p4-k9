@@ -1,0 +1,15 @@
+{
+  "tasks": [
+    {
+      "label": "Build C++ Persuratan",
+      "type": "shell",
+      "command": "g++",
+      "args": ["-o", "surat", "main.cpp", "surat.cpp"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ],
+  "version": "2.0.0"
+}
