@@ -17,7 +17,7 @@ Kelompok 12:
 
 ```sh
 git clone https://github.com/AghnatHs/strukturdata-p4-k9.git
-cd strukturdata-p4-9
+cd strukturdata-p4-k9
 ```
 
 2. Build project
