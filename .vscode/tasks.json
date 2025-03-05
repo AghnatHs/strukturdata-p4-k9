@@ -4,7 +4,7 @@
       "label": "Build C++ Persuratan",
       "type": "shell",
       "command": "g++",
-      "args": ["-o", "surat", "main.cpp", "surat.cpp"],
+      "args": ["-o", "surat", "main.cpp", "surat.cpp", "queue.cpp"],
       "group": {
         "kind": "build",
         "isDefault": true
