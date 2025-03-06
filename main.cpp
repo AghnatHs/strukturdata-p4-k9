@@ -6,8 +6,8 @@ using namespace std;
 
 int main() {
     QueueSurat queue;
-    Surat surat("ID1", "2025-03-05", "ini isi 1", "UNREAD");
-    Surat surat2("ID2", "2025-03-05", "ini isi 2", "UNREAD");
+    Surat surat("ID1", "2025-03-05", "ini isi 1", "Aghnat", "UNREAD");
+    Surat surat2("ID2", "2025-03-05", "ini isi 2", "Budi", "UNREAD");
     queue.enqueue(surat);
     queue.enqueue(surat2);
     queue.index();

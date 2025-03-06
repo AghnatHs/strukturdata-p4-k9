@@ -9,10 +9,11 @@ class Surat {
     string id;
     string date;
     string content;
+    string sender;
     string status;
 
    public:
-    Surat(string id, string date, string content, string status);
+    Surat(string id, string date, string content, string sender, string status);
     void show();
 };
 #endif
