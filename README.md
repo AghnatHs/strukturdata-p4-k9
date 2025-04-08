@@ -31,3 +31,9 @@ CTRL + SHIFT + B and then select Build ...
 ```sh
 ./surat
 ```
+
+4. or Run with CodeRunner
+
+```sh
+CTRL + ALT + N
+```
