@@ -12,6 +12,7 @@ Kelompok 12:
 - Surya Dharma Adi : G6401231133
 
 ### Instruction (using VS Code)
+Make sure you have "Make" already installed
 
 1. Clone project
 
