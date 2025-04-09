@@ -23,17 +23,11 @@ cd strukturdata-p4-k9
 2. Build project
 
 ```sh
-CTRL + SHIFT + B and then select Build ...
+make
 ```
 
 3. Run
 
 ```sh
-./surat
-```
-
-4. or Run with CodeRunner
-
-```sh
-CTRL + ALT + N
+./build
 ```

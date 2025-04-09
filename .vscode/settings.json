@@ -45,8 +45,4 @@
     "xtr1common": "cpp",
     "xutility": "cpp"
   },
-  "code-runner.executorMap": {
-    "cpp": "g++ -o surat main.cpp surat.cpp queue.cpp view.cpp utils.cpp && ./surat"
-  },
-  "code-runner.runInTerminal": true
 }

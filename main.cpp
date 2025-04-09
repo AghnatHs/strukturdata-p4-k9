@@ -1,15 +1,9 @@
-#include <iostream>
-
-#include "queue.h"
-#include "surat.h"
-#include "view.h"
-
-using namespace std;
+#include "app.hpp"
 
 int main() {
-    View view;
+    App app;
 
-    while (true) {
-        view.showAndHandleMainMenu();
+    while(true) {
+        app.showMainMenu();
     }
 }
