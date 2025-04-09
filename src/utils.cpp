@@ -13,7 +13,7 @@ void clearScreen() {
 #else
     system("clear");
 #endif
-}  // ANSI escape codes
+}
 
 string generateRandomIdWithPrefix(int length, string prefix) {
     const string chars =
