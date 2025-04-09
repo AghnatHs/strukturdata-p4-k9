@@ -8,6 +8,10 @@ class LetterService {
     Queue<Letter> incomingLettersQueue;
 
    public:
+    LetterService();
+    Letter getIncomingLetter();
+    void processIncomingLetter();
+
     void sendIncomingLetterToOffice(Letter letter);
-    void showIncomingLettersQueue(); 
+    void showIncomingLettersQueue();
 };

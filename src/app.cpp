@@ -14,14 +14,14 @@ void App::showApplicationTitleText() {
 }
 
 void App::showGuestTitleText() {
-    this->showApplicationTitleText();
+    showApplicationTitleText();
     cout << "-----------------" << endl;
     cout << "----- Guest -----" << endl;
     cout << "-----------------" << endl;
 }
 
 void App::showStaffTitleText() {
-    this->showApplicationTitleText();
+    showApplicationTitleText();
     cout << "-----------------" << endl;
     cout << "----- Staff -----" << endl;
     cout << "-----------------" << endl;
@@ -29,7 +29,7 @@ void App::showStaffTitleText() {
 
 void App::showMainMenu() {
     clearScreen();
-    this->showApplicationTitleText();
+    showApplicationTitleText();
     cout << "1. Login Guest" << endl;
     cout << "2. Login Pegawai" << endl;
     cout << "3. Exit" << endl;
@@ -39,9 +39,9 @@ void App::showMainMenu() {
     cin >> choice;
 
     if (choice == 1) {
-        this->showGuestMenu();
+        showGuestMenu();
     } else if (choice == 2) {
-        this->showStaffLoginMenu();
+        showStaffLoginMenu();
     } else if (choice == 3) {
         cout << "\nExiting Program...\n";
         exit(0);
@@ -53,7 +53,7 @@ void App::showMainMenu() {
 
 void App::showGuestMenu() {
     clearScreen();
-    this->showGuestTitleText();
+    showGuestTitleText();
     cout << "1. Kirim Surat ke Kantor" << endl;
     cout << "2. < Back" << endl;
 
@@ -62,21 +62,21 @@ void App::showGuestMenu() {
     cin >> choice;
 
     if (choice == 1) {
-        this->showGuestMenuSendLetter();
+        showGuestMenuSendLetter();
         waitForContinueOrExit();
-        this->showGuestMenu();
+        showGuestMenu();
     } else if (choice == 2) {
-        this->showMainMenu();
+        showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
         waitForContinueOrExit();
-        this->showGuestMenu();
+        showGuestMenu();
     }
 }
 
 void App::showStaffLoginMenu() {
     clearScreen();
-    this->showApplicationTitleText();
+    showApplicationTitleText();
     cout << "-----------------" << endl;
     cout << "-- Staff Login --" << endl;
     cout << "-----------------" << endl;
@@ -90,12 +90,12 @@ void App::showStaffLoginMenu() {
     cout << "Password   : ";
     getline(cin, password);
 
-    this->showStaffMenu();
+    showStaffMenu();
 }
 
 void App::showGuestMenuSendLetter() {
     clearScreen();
-    this->showGuestTitleText();
+    showGuestTitleText();
     cout << "-----------------" << endl;
     cout << "-- Kirim Surat --" << endl;
     cout << "-----------------" << endl;
@@ -125,8 +125,9 @@ void App::showGuestMenuSendLetter() {
 
 void App::showStaffMenu() {
     clearScreen();
-    this->showStaffTitleText();
-    cout << "1. Lihat daftar surat masuk" << endl;
+    showStaffTitleText();
+    cout << "1. Lihat antrian surat masuk" << endl;
+    cout << "2. Proses antrian surat masuk" << endl;
     cout << "6. < Back" << endl;
 
     int choice;
@@ -135,17 +136,43 @@ void App::showStaffMenu() {
 
     if (choice == 1) {
         try {
-            this->letterService.showIncomingLettersQueue();
+            letterService.showIncomingLettersQueue();
         } catch (const runtime_error& e) {
             cout << e.what() << endl;
         }
         waitForContinueOrExit();
-        this->showStaffMenu();
+        showStaffMenu();
+    } else if (choice == 2) {
+        try {
+            cout << "Mengambil surat dari antrian..." << endl;
+            Letter letter = letterService.getIncomingLetter();
+
+            char p;
+            cout << letter << endl;
+            cout << "Proses surat ini? (Y/N) : ";
+            cin >> p;
+
+            if (p == 'Y') {
+                cout << "Surat " << letter.getId() << " Diproses..." << endl;
+                cout << "Status diubah menjadi SELESAI..." << endl;
+                cout << "Surat " << letter.getId()
+                     << " Dikeluarkan dari antrian..." << endl;
+                letterService.processIncomingLetter();
+            } else if (p == 'N') {
+                showStaffMenu();
+            }
+
+        } catch (const runtime_error& e) {
+            cout << "Belum ada antrian surat masuk yang perlu diproses :)"
+                 << endl;
+        }
+        waitForContinueOrExit();
+        showStaffMenu();
     } else if (choice == 6) {
-        this->showMainMenu();
+        showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
         waitForContinueOrExit();
-        this->showStaffMenu();
+        showStaffMenu();
     }
 }
