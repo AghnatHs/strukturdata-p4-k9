@@ -134,7 +134,11 @@ void App::showStaffMenu() {
     cin >> choice;
 
     if (choice == 1) {
-        this->letterService.showIncomingLettersQueue();
+        try {
+            this->letterService.showIncomingLettersQueue();
+        } catch (const runtime_error& e) {
+            cout << e.what() << endl;
+        }
         waitForContinueOrExit();
         this->showStaffMenu();
     } else if (choice == 6) {

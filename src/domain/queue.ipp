@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <stdexcept>
 
 #include "domain/queue.hpp"
 using namespace std;
@@ -43,7 +44,7 @@ T Queue<T>::dequeue() {
 template <typename T>
 T Queue<T>::peek() const {
     if (isEmpty()) {
-        throw out_of_range("Queue is empty");
+        throw runtime_error("No data available.");
     }
     return front->data;
 }
@@ -61,8 +62,7 @@ int Queue<T>::getSize() const {
 template <typename T>
 void Queue<T>::print() const {
     if (isEmpty()) {
-        cout << "No data available." << endl;
-        return;
+        throw runtime_error("No data available.");
     }
 
     Node* current = front;
