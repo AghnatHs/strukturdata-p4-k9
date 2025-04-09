@@ -21,7 +21,7 @@ void Stack<T>::push(const T& item) {
 
 template <typename T>
 void Stack<T>::pop() {
-    if (isEmpty()) throw std::runtime_error("Stack underflow!");
+    if (isEmpty()) throw std::runtime_error("No data available.");
     Node* temp = topNode;
     topNode = topNode->next;
     delete temp;
@@ -29,7 +29,7 @@ void Stack<T>::pop() {
 
 template <typename T>
 T Stack<T>::top() const {
-    if (isEmpty()) throw std::runtime_error("Stack is empty!");
+    if (isEmpty()) throw std::runtime_error("No data available.");
     return topNode->data;
 }
 
