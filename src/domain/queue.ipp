@@ -66,12 +66,10 @@ void Queue<T>::print() const {
     }
 
     Node* current = front;
-    cout << "[ LAMA ]\n" << endl;
     while (current != nullptr) {
         cout << "-> " << current->data << endl;
         current = current->next;
     }
-    cout << "[ BARU ]" << endl;
 }
 
 template <typename T>
