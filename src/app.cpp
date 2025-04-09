@@ -35,7 +35,7 @@ void App::showMainMenu() {
     cout << "3. Exit" << endl;
 
     int choice;
-    cout << "Pilih menu: ";
+    cout << "Pilih menu : ";
     cin >> choice;
 
     if (choice == 1) {
@@ -58,7 +58,7 @@ void App::showGuestMenu() {
     cout << "2. < Back" << endl;
 
     int choice;
-    cout << "Pilih Menu: ";
+    cout << "Pilih Menu : ";
     cin >> choice;
 
     if (choice == 1) {
@@ -87,7 +87,7 @@ void App::showStaffLoginMenu() {
     cin.ignore();
     cout << "ID Pegawai : ";
     getline(cin, idPegawai);
-    cout << "Password : ";
+    cout << "Password   : ";
     getline(cin, password);
 
     this->showStaffMenu();
@@ -105,11 +105,11 @@ void App::showGuestMenuSendLetter() {
     string content;
 
     cin.ignore();
-    cout << "Pengirim : ";
+    cout << "Pengirim    : ";
     getline(cin, sender);
     cout << "Judul Surat : ";
     getline(cin, title);
-    cout << "Isi Surat : ";
+    cout << "Isi Surat   : ";
     getline(cin, content);
 
     Letter letter(sender, title, content);
@@ -130,7 +130,7 @@ void App::showStaffMenu() {
     cout << "6. < Back" << endl;
 
     int choice;
-    cout << "Pilih Menu: ";
+    cout << "Pilih Menu : ";
     cin >> choice;
 
     if (choice == 1) {
