@@ -4,6 +4,8 @@
 
 #include "utils.hpp"
 
+string Letter::getId() { return id; }
+
 Letter::Letter(string sender, string title, string content)
     : id{generateRandomIdWithPrefix(8, "SURAT")},
       date{time(nullptr)},
@@ -22,6 +24,6 @@ ostream& operator<<(ostream& os, const Letter& letter) {
     os << "Pengirim : " << letter.sender << endl;
     os << "Isi      : " << letter.content << endl;
     os << "Status   : " << letter.status << endl;
-    os << "==============================================" << endl;
+    os << "=================================================" << endl;
     return os;
 }
