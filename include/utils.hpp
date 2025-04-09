@@ -1,12 +1,8 @@
-#ifndef UTILS_H
-#define UTILS_H
+#pragma once
 
-#include <cctype>
-#include <iostream>
 #include <string>
 using namespace std;
 
 void clearScreen();
+string generateRandomIdWithPrefix(int length, string prefix);
 void waitForContinueOrExit();
-
-#endif
