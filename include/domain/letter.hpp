@@ -15,6 +15,7 @@ class Letter {
 
    public:
     string getId();
+    string getFormattedDate() const;
     void changeStatus(string newStatus);
 
     Letter(string sender, string title, string content);
