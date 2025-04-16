@@ -3,5 +3,6 @@
 using namespace std;
 
 namespace Crypto {
-string XORChiper(const string& text, char key);
+string encrypt(const string& text, int shift);
+string decrypt(const string& text, int shift);
 }
