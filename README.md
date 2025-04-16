@@ -11,7 +11,7 @@ Kelompok 12:
 - Aghnat Hasya Sayyidina : G6401231074
 - Surya Dharma Adi : G6401231133
 
-### Instruction (using VS Code)
+### Instruction
 Make sure you have "Make" already installed
 
 1. Clone project
