@@ -13,7 +13,11 @@ Letter::Letter(string sender, string title, string content)
       status{"PENDING"},
       sender{sender},
       title{title},
-      content{Crypto::encrypt(content, 15)} {}
+      content{content} {
+    this->key = rand() % 27 + 1;
+    this->content = Crypto::encrypt(this->content, this->key);
+    cout << this->key;
+}
 
 string Letter::getId() { return id; }
 
@@ -31,7 +35,7 @@ ostream& operator<<(ostream& os, const Letter& letter) {
     os << "Tanggal  : " << letter.getFormattedDate() << endl << endl;
     os << "Judul    : " << letter.title << endl;
     os << "Pengirim : " << letter.sender << endl;
-    os << "Isi      : " << Crypto::decrypt(letter.content, 15) << endl;
+    os << "Isi      : " << Crypto::decrypt(letter.content, letter.key) << endl;
     os << "Status   : " << letter.status << endl;
     os << "================================================" << endl;
     return os;
