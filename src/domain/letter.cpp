@@ -13,9 +13,7 @@ Letter::Letter(string sender, string title, string content)
       status{"PENDING"},
       sender{sender},
       title{title},
-      content{Crypto::encrypt(content, 15)} {
-    std::cout << this->content << endl;
-}
+      content{Crypto::encrypt(content, 15)} {}
 
 string Letter::getId() { return id; }
 
