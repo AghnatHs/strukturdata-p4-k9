@@ -1,8 +1,11 @@
 #include "utils.hpp"
 
 #include <cctype>
+#include <chrono>
+#include <ctime>
 #include <iostream>
 #include <random>
+#include <sstream>
 #include <string>
 
 using namespace std;
@@ -28,6 +31,15 @@ string generateRandomIdWithPrefix(int length, string prefix) {
     }
 
     return prefix + "-" + id;
+}
+
+string getCurrentTimestampString() {
+    using namespace std::chrono;
+    auto now = system_clock::now();
+    time_t now_c = system_clock::to_time_t(now);
+    char buffer[100];
+    strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", localtime(&now_c));
+    return string(buffer);
 }
 
 void waitForContinueOrExit() {
