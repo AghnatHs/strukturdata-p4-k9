@@ -12,7 +12,7 @@ void LetterService::processIncomingLetter() {
     Letter letter = incomingLettersQueue.peek();
 
     letter.changeStatus("SELESAI");
-    lettersHistoryStr.push(letter.getId() + " - " + "PENDING" + " --> " +
+    lettersHistoryStr.push(letter.getId() + " | " + "PENDING" + " --> " +
                            "SELESAI | " + getCurrentTimestampString());
 
     lettersHistory.push(letter);
