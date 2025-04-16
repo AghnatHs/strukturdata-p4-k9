@@ -15,6 +15,7 @@ class Letter {
 
    public:
     string getId();
+    void changeStatus(string newStatus);
 
     Letter(string sender, string title, string content);
     friend ostream &operator<<(ostream &os, const Letter &letter);

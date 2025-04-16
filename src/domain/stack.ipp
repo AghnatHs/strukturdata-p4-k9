@@ -46,3 +46,15 @@ void Stack<T>::clear() {
         delete temp;
     }
 }
+template <typename T>
+void Stack<T>::print() {
+    if (isEmpty()) {
+        throw runtime_error("No data available.");
+    }
+
+    Node* current = topNode;
+    while (current != nullptr) {
+        cout << "-> " << current->data << endl;
+        current = current->next;
+    }
+}
