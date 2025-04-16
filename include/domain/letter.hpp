@@ -13,6 +13,8 @@ class Letter {
     string sender;
     string status;
 
+    int key;
+
    public:
     string getId();
     string getFormattedDate() const;
