@@ -2,10 +2,14 @@
 
 #include "domain/letter.hpp"
 #include "domain/queue.hpp"
+#include "domain/stack.hpp"
 
 class LetterService {
    private:
     Queue<Letter> incomingLettersQueue;
+
+    Stack<Letter> lettersHistory;
+    Stack<string> lettersHistoryStr;
 
    public:
     LetterService();
@@ -14,4 +18,5 @@ class LetterService {
 
     void sendIncomingLetterToOffice(Letter letter);
     void showIncomingLettersQueue();
+    void showIncomingLettersHistory();
 };

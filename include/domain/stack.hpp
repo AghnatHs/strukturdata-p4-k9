@@ -1,8 +1,10 @@
 #pragma once
 
+#include "domain/letter.hpp"
+
 template <typename T>
 class Stack {
-   private:
+   protected:
     struct Node {
         T data;
         Node* next;
@@ -19,6 +21,7 @@ class Stack {
     bool isEmpty() const;
 
     void clear();
+    void print();
 };
 
 #include "../../src/domain/stack.ipp"
