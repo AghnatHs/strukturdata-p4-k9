@@ -209,7 +209,6 @@ void App::showStaffMenu() {
                      << " Dikeluarkan dari antrian..." << endl;
                 letterService.processIncomingLetter();
                 save();
-                waitForContinue();
             } else if (p == 'N') {
                 showStaffMenu();
             }
