@@ -20,6 +20,6 @@ class LetterService {
     void showIncomingLettersQueue();
     void showIncomingLettersHistory();
 
-    void loadLettersFromCSV(const string& filename);
-    void saveLettersToCSV(const string& filename);
+    void loadLetterQueueFromCSV(const string& filename);
+    void saveLetterQueueToCSV(const string& filename);
 };

@@ -28,7 +28,7 @@ void LetterService::sendIncomingLetterToOffice(Letter letter) {
 void LetterService::showIncomingLettersQueue() { incomingLettersQueue.print(); }
 void LetterService::showIncomingLettersHistory() { lettersHistoryStr.print(); }
 
-void LetterService::loadLettersFromCSV(const string& filename) {
+void LetterService::loadLetterQueueFromCSV(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) return;
 
@@ -41,7 +41,7 @@ void LetterService::loadLettersFromCSV(const string& filename) {
     file.close();
 }
 
-void LetterService::saveLettersToCSV(const string& filename) {
+void LetterService::saveLetterQueueToCSV(const string& filename) {
     ofstream file(filename, ios::out | ios::trunc);
     if (!file.is_open()) return;
 
