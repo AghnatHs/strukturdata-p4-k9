@@ -1,6 +1,7 @@
 #include "service/letter_service.hpp"
 
 #include <fstream>
+#include <vector>
 
 #include "utils.hpp"
 
@@ -60,9 +61,14 @@ void LetterService::loadLetterHistoryStrFromCSV(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) return;
 
+    vector<string> lines;
     string line;
     while (getline(file, line)) {
-        lettersHistoryStr.push(line);
+        lines.push_back(line);
+    }
+
+    for (auto it = lines.rbegin(); it != lines.rend(); ++it) {
+        lettersHistoryStr.push(*it);
     }
 
     file.close();
