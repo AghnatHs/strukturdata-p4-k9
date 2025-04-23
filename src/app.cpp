@@ -9,6 +9,10 @@ using namespace std;
 
 unordered_map<string, Hash> staffs = {{"admin", hash<string>{}("admin123")}};
 
+void App::run() { letterService.loadLettersFromCSV("./letters.csv"); }
+
+void App::save() { letterService.saveLettersToCSV("./letters.csv"); }
+
 bool App::loginStaff(std::unordered_map<std::string, Hash>& staffs) {
     string idPegawai;
     string password;
@@ -156,6 +160,7 @@ void App::showGuestMenuSendLetter() {
     cout << ">>>>>" << endl;
     cout << "-> Surat anda telah terkirim ke kantor kami!" << endl;
     cout << "-----------------------------------------" << endl;
+    save();
 }
 
 void App::showStaffMenu() {
@@ -194,6 +199,7 @@ void App::showStaffMenu() {
                 cout << "Surat " << letter.getId()
                      << " Dikeluarkan dari antrian..." << endl;
                 letterService.processIncomingLetter();
+                save();
             } else if (p == 'N') {
                 showStaffMenu();
             }

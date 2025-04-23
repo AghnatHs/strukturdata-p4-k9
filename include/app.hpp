@@ -11,6 +11,9 @@ class App {
     LetterService letterService;
 
    public:
+    void run();
+    void save(); 
+
     bool loginStaff(unordered_map<string, Hash> &staffs);
 
     void showApplicationTitleText();

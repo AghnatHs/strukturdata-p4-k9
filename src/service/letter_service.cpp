@@ -42,7 +42,7 @@ void LetterService::loadLettersFromCSV(const string& filename) {
 }
 
 void LetterService::saveLettersToCSV(const string& filename) {
-    ofstream file(filename);
+    ofstream file(filename, ios::out | ios::trunc);
     if (!file.is_open()) return;
 
     Queue<Letter> tempQueue = incomingLettersQueue;

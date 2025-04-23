@@ -17,7 +17,6 @@ Letter::Letter(string sender, string title, string content)
       content{content} {
     this->key = rand() % 27 + 1;
     this->content = Crypto::encrypt(this->content, this->key);
-    cout << this->key;
 }
 
 string Letter::getId() { return id; }
