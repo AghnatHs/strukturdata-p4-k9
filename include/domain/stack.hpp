@@ -13,6 +13,7 @@ class Stack {
 
    public:
     Stack();
+    Stack(const Stack<T>& other);
     ~Stack();
 
     void push(const T& item);

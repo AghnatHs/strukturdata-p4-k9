@@ -9,6 +9,21 @@ template <typename T>
 Stack<T>::Stack() : topNode(nullptr) {}
 
 template <typename T>
+Stack<T>::Stack(const Stack<T>& other) : topNode(nullptr) {
+    if (other.topNode == nullptr) return;
+
+    Stack<T> temp;
+    for (Node* curr = other.topNode; curr != nullptr; curr = curr->next) {
+        temp.push(curr->data);
+    }
+
+    while (!temp.isEmpty()) {
+        this->push(temp.top());
+        temp.pop();
+    }
+}
+
+template <typename T>
 Stack<T>::~Stack() {
     clear();
 }
