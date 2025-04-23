@@ -9,6 +9,15 @@ template <typename T>
 Queue<T>::Queue() : front(nullptr), rear(nullptr), size(0) {}
 
 template <typename T>
+Queue<T>::Queue(const Queue<T>& other) : front(nullptr), rear(nullptr) {
+    Node* current = other.front;
+    while (current != nullptr) {
+        enqueue(current->data);
+        current = current->next;
+    }
+}
+
+template <typename T>
 Queue<T>::~Queue() {
     clear();
 }
