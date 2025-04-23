@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <vector>
 
 #include "crypto.hpp"
 #include "utils.hpp"
@@ -25,6 +26,29 @@ string Letter::getFormattedDate() const {
     ostringstream oss;
     oss << put_time(std::localtime(&date), "%Y-%m-%d %H:%M:%S");
     return oss.str();
+}
+
+string Letter::serializeToCSV() const {
+    // Format: id,date,title,content,sender,status
+    return id + "," + to_string(date) + "," + title + "," + content + "," +
+           sender + "," + status;
+}
+
+Letter Letter::fromCSV(const string& line) {
+    vector<string> tokens;
+    string token;
+    stringstream ss(line);
+
+    while (getline(ss, token, ',')) {
+        tokens.push_back(token);
+    }
+
+    Letter letter(tokens[4], tokens[2], tokens[3]);
+    letter.id = tokens[0];
+    letter.date = stoi(tokens[1]);
+    letter.status = tokens[5];
+
+    return letter;
 }
 
 void Letter::changeStatus(string newStatus) { status = newStatus; }
