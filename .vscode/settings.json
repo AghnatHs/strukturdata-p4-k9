@@ -50,6 +50,8 @@
     "random": "cpp",
     "xlocmon": "cpp",
     "xloctime": "cpp",
-    "unordered_map": "cpp"
+    "unordered_map": "cpp",
+    "sstream": "cpp",
+    "fstream": "cpp"
   },
 }

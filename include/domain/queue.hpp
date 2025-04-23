@@ -17,6 +17,7 @@ class Queue {
 
    public:
     Queue();
+    Queue(const Queue<T>& other);
     ~Queue();
 
     void enqueue(const T& value);

@@ -3,7 +3,8 @@
 int main() {
     App app;
 
-    while(true) {
+    while (true) {
+        app.run();
         app.showMainMenu();
     }
 }
