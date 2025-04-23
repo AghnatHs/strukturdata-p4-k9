@@ -42,6 +42,12 @@ string getCurrentTimestampString() {
     return string(buffer);
 }
 
+void waitForContinue() {
+    cout << "Ketik huruf apa saja untuk melanjutkan : ";
+    string ch;
+    cin >> ch;
+}
+
 void waitForContinueOrExit() {
     cout << "/////////////////////////////////////////////////////////////"
          << endl;

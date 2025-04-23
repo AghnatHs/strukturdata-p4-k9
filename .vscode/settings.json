@@ -49,6 +49,7 @@
     "iomanip": "cpp",
     "random": "cpp",
     "xlocmon": "cpp",
-    "xloctime": "cpp"
+    "xloctime": "cpp",
+    "unordered_map": "cpp"
   },
 }
