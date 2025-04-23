@@ -19,4 +19,7 @@ class LetterService {
     void sendIncomingLetterToOffice(Letter letter);
     void showIncomingLettersQueue();
     void showIncomingLettersHistory();
+
+    void loadLettersFromCSV(const string& filename);
+    void saveLettersToCSV(const string& filename);
 };
