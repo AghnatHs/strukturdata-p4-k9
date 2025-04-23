@@ -12,6 +12,8 @@ class App {
 
    public:
     static string QUEUE_CSV_FILEPATH;
+    static string STATUS_HISTORY_CSV_FILEPATH;
+
     void run();
     void save(); 
 

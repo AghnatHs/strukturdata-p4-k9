@@ -10,6 +10,7 @@ using namespace std;
 unordered_map<string, Hash> staffs = {{"admin", hash<string>{}("admin123")}};
 
 string App::QUEUE_CSV_FILEPATH = "./letters.csv";
+string App::STATUS_HISTORY_CSV_FILEPATH = "./letterStatusHistory.csv";
 
 void App::run() { letterService.loadLetterQueueFromCSV(QUEUE_CSV_FILEPATH); }
 
