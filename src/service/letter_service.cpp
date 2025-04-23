@@ -55,3 +55,29 @@ void LetterService::saveLetterQueueToCSV(const string& filename) {
 
     file.close();
 }
+
+void LetterService::loadLetterHistoryStrFromCSV(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) return;
+
+    string line;
+    while (getline(file, line)) {
+        lettersHistoryStr.push(line);
+    }
+
+    file.close();
+}
+
+void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
+    ofstream file(filename, ios::out | ios::trunc);
+    if (!file.is_open()) return;
+
+    Stack<string> tempLetterHistoryStr = lettersHistoryStr;
+
+    while (!tempLetterHistoryStr.isEmpty()) {
+        file << tempLetterHistoryStr.top() << endl;
+        tempLetterHistoryStr.pop();
+    }
+
+    file.close();
+}
