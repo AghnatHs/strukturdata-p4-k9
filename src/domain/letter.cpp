@@ -15,8 +15,7 @@ Letter::Letter(string sender, string title, string content)
       sender{sender},
       title{title},
       content{content} {
-    this->key =
-        rand() % 27 + 1;
+    this->key = generateRandomInteger(1, 26);
     this->content = Crypto::encrypt(this->content, this->key);
 }
 

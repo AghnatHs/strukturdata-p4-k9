@@ -33,6 +33,13 @@ string generateRandomIdWithPrefix(int length, string prefix) {
     return prefix + "-" + id;
 }
 
+int generateRandomInteger(int min, int max) {
+    static std::mt19937 rng(
+        static_cast<unsigned int>(time(nullptr)));
+    std::uniform_int_distribution<int> dist(min, max);
+    return dist(rng);
+}
+
 string getCurrentTimestampString() {
     using namespace std::chrono;
     auto now = system_clock::now();
