@@ -7,6 +7,28 @@
 
 using namespace std;
 
+unordered_map<string, Hash> staffs = {{"admin", hash<string>{}("admin123")}};
+
+bool App::loginStaff(std::unordered_map<std::string, Hash>& staffs) {
+    string idPegawai;
+    string password;
+
+    cin.ignore();
+    cout << "ID Pegawai : ";
+    getline(cin, idPegawai);
+    cout << "Password   : ";
+    getline(cin, password);
+
+    auto it = staffs.find(idPegawai);
+    if (it != staffs.end() && it->second == hash<string>{}(password)) {
+        cout << "Login successful!" << endl;
+        return true;
+    }
+
+    cout << "Login failed! wrong ID or Password" << endl;
+    return false;
+}
+
 void App::showApplicationTitleText() {
     cout << "-------------------------------------------------------" << endl;
     cout << "----Aplikasi Pengelolaan Surat Masuk & Keluar Kantor---" << endl;
@@ -80,15 +102,28 @@ void App::showStaffLoginMenu() {
     cout << "-----------------" << endl;
     cout << "-- Staff Login --" << endl;
     cout << "-----------------" << endl;
+    cout << "1. Login" << endl;
+    cout << "2. < Back" << endl;
 
-    string idPegawai;
-    string password;
+    int choice;
+    cout << "Pilih Menu : ";
+    cin >> choice;
 
-    cin.ignore();
-    cout << "ID Pegawai : ";
-    getline(cin, idPegawai);
-    cout << "Password   : ";
-    getline(cin, password);
+    if (choice == 1) {
+        if (loginStaff(staffs)) {
+            waitForContinue();
+            showStaffMenu();
+        } else {
+            waitForContinue();
+            showStaffLoginMenu();
+        }
+    } else if (choice == 2) {
+        showMainMenu();
+    } else {
+        cout << "Input tidak valid" << endl;
+        waitForContinueOrExit();
+        showGuestMenu();
+    }
 
     showStaffMenu();
 }
