@@ -164,7 +164,7 @@ void App::showStaffMenu() {
     cout << "1. Lihat antrian surat masuk" << endl;
     cout << "2. Proses antrian surat masuk" << endl;
     cout << "3. Lihat history perubahan surat masuk" << endl;
-    cout << "6. < Back" << endl;
+    cout << "6. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
