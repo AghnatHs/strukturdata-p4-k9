@@ -9,9 +9,11 @@ using namespace std;
 
 unordered_map<string, Hash> staffs = {{"admin", hash<string>{}("admin123")}};
 
-void App::run() { letterService.loadLetterQueueFromCSV("./letters.csv"); }
+string App::QUEUE_CSV_FILEPATH = "./letters.csv";
 
-void App::save() { letterService.saveLetterQueueToCSV("./letters.csv"); }
+void App::run() { letterService.loadLetterQueueFromCSV(QUEUE_CSV_FILEPATH); }
+
+void App::save() { letterService.saveLetterQueueToCSV(QUEUE_CSV_FILEPATH); }
 
 bool App::loginStaff(std::unordered_map<std::string, Hash>& staffs) {
     string idPegawai;

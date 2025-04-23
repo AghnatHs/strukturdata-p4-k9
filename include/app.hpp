@@ -11,6 +11,7 @@ class App {
     LetterService letterService;
 
    public:
+    static string QUEUE_CSV_FILEPATH;
     void run();
     void save(); 
 
