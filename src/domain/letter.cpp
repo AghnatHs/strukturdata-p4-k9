@@ -15,9 +15,19 @@ Letter::Letter(string sender, string title, string content)
       sender{sender},
       title{title},
       content{content} {
-    this->key = rand() % 27 + 1;
+    this->key =
+        rand() % 27 + 1;
     this->content = Crypto::encrypt(this->content, this->key);
 }
+
+Letter::Letter(string sender, string title, string content, int key)
+    : id{generateRandomIdWithPrefix(8, "SURAT")},
+      date{time(nullptr)},
+      status{"PENDING"},
+      sender{sender},
+      title{title},
+      content{content},
+      key{key} {}
 
 string Letter::getId() { return id; }
 
@@ -28,9 +38,9 @@ string Letter::getFormattedDate() const {
 }
 
 string Letter::serializeToCSV() const {
-    // Format: id,date,title,content,sender,status
+    // Format: id,date,title,content,sender,status, key
     return id + "," + to_string(date) + "," + title + "," + content + "," +
-           sender + "," + status;
+           sender + "," + status + "," + to_string(key);
 }
 
 Letter Letter::fromCSV(const string& line) {
@@ -42,7 +52,7 @@ Letter Letter::fromCSV(const string& line) {
         tokens.push_back(token);
     }
 
-    Letter letter(tokens[4], tokens[2], tokens[3]);
+    Letter letter(tokens[4], tokens[2], tokens[3], stoi(tokens[6]));
     letter.id = tokens[0];
     letter.date = stoi(tokens[1]);
     letter.status = tokens[5];
