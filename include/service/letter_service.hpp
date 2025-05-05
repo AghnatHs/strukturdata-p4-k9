@@ -14,7 +14,7 @@ class LetterService {
    public:
     LetterService();
     Letter getIncomingLetter();
-    void processIncomingLetter();
+    void processIncomingLetter(string newStatus);
 
     void sendIncomingLetterToOffice(Letter letter);
     void showIncomingLettersQueue();

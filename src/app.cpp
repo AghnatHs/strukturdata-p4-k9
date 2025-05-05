@@ -203,11 +203,16 @@ void App::showStaffMenu() {
             cin >> p;
 
             if (p == 'Y') {
+                cin.ignore();
+                string newStatus;
+                cout << "Beri status : (SELESAI, DITOLAK, atau lainnya) : ";
+                getline(cin, newStatus);
+
                 cout << "Surat " << letter.getId() << " Diproses..." << endl;
-                cout << "Status diubah menjadi SELESAI..." << endl;
+                cout << "Status diubah menjadi " << newStatus << " ..." << endl;
                 cout << "Surat " << letter.getId()
                      << " Dikeluarkan dari antrian..." << endl;
-                letterService.processIncomingLetter();
+                letterService.processIncomingLetter(newStatus);
                 save();
             } else if (p == 'N') {
                 showStaffMenu();
