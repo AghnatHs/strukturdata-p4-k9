@@ -8,6 +8,15 @@
 #include "crypto.hpp"
 #include "utils.hpp"
 
+Letter::Letter()
+    : id(""),
+      date(time(nullptr)),
+      title(""),
+      content(""),
+      sender(""),
+      status("PENDING"),
+      key(0) {}
+
 Letter::Letter(string sender, string title, string content)
     : id{generateRandomIdWithPrefix(8, "SURAT")},
       date{time(nullptr)},
@@ -28,7 +37,7 @@ Letter::Letter(string sender, string title, string content, int key)
       content{content},
       key{key} {}
 
-string Letter::getId() { return id; }
+string Letter::getId() const { return id; }
 
 string Letter::getFormattedDate() const {
     ostringstream oss;

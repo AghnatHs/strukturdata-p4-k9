@@ -16,14 +16,15 @@ class Letter {
     int key;
 
    public:
-    string getId();
+    Letter();
+    Letter(string sender, string title, string content);
+    Letter(string sender, string title, string content, int key);  // from csv
+    friend ostream &operator<<(ostream &os, const Letter &letter);
+
+    string getId() const;
     string getFormattedDate() const;
     void changeStatus(string newStatus);
 
     string serializeToCSV() const;
     static Letter fromCSV(const string &line);
-
-    Letter(string sender, string title, string content);
-    Letter(string sender, string title, string content, int key); // from csv
-    friend ostream &operator<<(ostream &os, const Letter &letter);
 };
