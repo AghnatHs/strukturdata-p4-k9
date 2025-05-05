@@ -11,12 +11,12 @@ Letter LetterService::getIncomingLetter() {
     return incomingLettersQueue.peek();
 };
 
-void LetterService::processIncomingLetter() {
+void LetterService::processIncomingLetter(string newStatus) {
     Letter letter = incomingLettersQueue.peek();
 
-    letter.changeStatus("SELESAI");
+    letter.changeStatus(newStatus);
     lettersHistoryStr.push(letter.getId() + " | " + "PENDING" + " --> " +
-                           "SELESAI | " + getCurrentTimestampString());
+                           newStatus + " | " + getCurrentTimestampString());
 
     lettersHistory.push(letter);
 
