@@ -167,7 +167,11 @@ void App::showGuestMenuSendLetter() {
     cout << ">>>>>" << endl;
     cout << letter;
     cout << ">>>>>" << endl;
+    cout << "ID: " << letter.getId() << endl;
     cout << "-> Surat anda telah terkirim ke kantor kami!" << endl;
+    cout << "-> Jangan lupa catat ID surat anda untuk pengecekan di kemudian "
+            "hari"
+         << endl;
     cout << "-----------------------------------------" << endl;
     save();
 }
