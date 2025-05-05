@@ -205,7 +205,7 @@ void App::showStaffMenu() {
             if (p == 'Y') {
                 cin.ignore();
                 string newStatus;
-                cout << "Beri status : (SELESAI, DITOLAK, atau lainnya)";
+                cout << "Beri status : (SELESAI, DITOLAK, atau lainnya) : ";
                 getline(cin, newStatus);
 
                 cout << "Surat " << letter.getId() << " Diproses..." << endl;
