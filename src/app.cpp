@@ -171,6 +171,7 @@ void App::showGuestMenuSendLetter() {
     Letter letter(sender, title, content);
 
     letterService.sendIncomingLetterToOffice(letter);
+    letterService.storeLetterToMap(letter);
 
     cout << ">>>>>" << endl;
     cout << letter;
