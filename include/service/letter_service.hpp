@@ -11,7 +11,7 @@ class LetterService {
     Queue<Letter> incomingLettersQueue;
 
     map<string, Letter> lettersHistoryMap; // contains all Letters, unprocessed, processed and so on
-    Stack<string> lettersHistoryStr;
+    Stack<string> lettersHistoryStr; // contains status changed of letter
 
    public:
     LetterService();
