@@ -28,6 +28,7 @@ class App {
     void showStaffLoginMenu();
 
     void showGuestMenuSendLetter();
+    void showGuestMenuFindLetter();
 
     void showStaffMenu();
 };
