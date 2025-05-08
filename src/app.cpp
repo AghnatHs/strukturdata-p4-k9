@@ -90,7 +90,8 @@ void App::showGuestMenu() {
     clearScreen();
     showGuestTitleText();
     cout << "1. Kirim Surat ke Kantor" << endl;
-    cout << "2. < Back" << endl;
+    cout << "2. Cek Surat" << endl;
+    cout << "3. < Back" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -101,6 +102,10 @@ void App::showGuestMenu() {
         waitForContinueOrExit();
         showGuestMenu();
     } else if (choice == 2) {
+        showGuestMenuFindLetter();
+        waitForContinue();
+        showGuestMenu();
+    } else if (choice == 3) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
@@ -174,6 +179,40 @@ void App::showGuestMenuSendLetter() {
          << endl;
     cout << "-----------------------------------------" << endl;
     save();
+}
+
+void App::showGuestMenuFindLetter() {
+    clearScreen();
+    showGuestTitleText();
+    cout << "-----------------" << endl;
+    cout << "--- Cari Surat --" << endl;
+    cout << "-----------------" << endl;
+    cout << "Cek surat anda dengan ID surat yang telah diberikan saat anda "
+            "mengirim surat"
+         << endl;
+    cout << "Ketik 'Q' untuk keluar dari menu ini" << endl;
+
+    string id;
+
+    cin.ignore();
+    cout << "ID Surat    : ";
+    getline(cin, id);
+
+    if (id == "Q") {
+        showGuestMenu();
+    }
+
+    Letter* letterPtr = letterService.findLetterById(id);
+
+    if (letterPtr == nullptr) {
+        cout << "-> Surat dengan ID " << id
+             << " tidak ditemukan, sudah benarkah ID nya?" << endl;
+        waitForContinue();
+        showGuestMenuFindLetter();
+    } else {
+        Letter& letter = *letterPtr;
+        cout << letter << endl;
+    }
 }
 
 void App::showStaffMenu() {

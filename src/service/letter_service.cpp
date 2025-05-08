@@ -18,7 +18,7 @@ void LetterService::processIncomingLetter(string newStatus) {
     lettersHistoryStr.push(letter.getId() + " | " + "PENDING" + " --> " +
                            newStatus + " | " + getCurrentTimestampString());
 
-    lettersHistory.push(letter);
+    storeLetterToMap(letter);
 
     incomingLettersQueue.dequeue();
 };
@@ -28,6 +28,18 @@ void LetterService::sendIncomingLetterToOffice(Letter letter) {
 };
 void LetterService::showIncomingLettersQueue() { incomingLettersQueue.print(); }
 void LetterService::showIncomingLettersHistory() { lettersHistoryStr.print(); }
+
+void LetterService::storeLetterToMap(const Letter& letter) {
+    lettersHistoryMap[letter.getId()] = letter;
+}
+
+Letter* LetterService::findLetterById(const string& id) {
+    auto it = lettersHistoryMap.find(id);
+    if (it != lettersHistoryMap.end()) {
+        return &it->second;
+    }
+    return nullptr;
+}
 
 void LetterService::loadLetterQueueFromCSV(const string& filename) {
     ifstream file(filename);
