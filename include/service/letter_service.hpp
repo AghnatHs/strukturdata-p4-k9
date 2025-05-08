@@ -27,6 +27,9 @@ class LetterService {
 
     void loadLetterQueueFromCSV(const string& filename);
     void saveLetterQueueToCSV(const string& filename);
+    
+    void loadLettersFromCSV(const string& filename);
+    void saveLettersToCSV(const string& filename);
 
     void loadLetterHistoryStrFromCSV(const string& filename);
     void saveLetterHistoryStrToCsv(const string& filename);

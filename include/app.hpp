@@ -11,11 +11,12 @@ class App {
     LetterService letterService;
 
    public:
-    static string QUEUE_CSV_FILEPATH;
-    static string STATUS_HISTORY_CSV_FILEPATH;
+    static string LETTERS_CSV_FILEPATH;
+    static string LETTERS_QUEUE_CSV_FILEPATH;
+    static string LETTERS_STATUS_HISTORY_CSV_FILEPATH;
 
     void run();
-    void save(); 
+    void save();
 
     bool loginStaff(unordered_map<string, Hash> &staffs);
 

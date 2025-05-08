@@ -69,6 +69,33 @@ void LetterService::saveLetterQueueToCSV(const string& filename) {
     file.close();
 }
 
+void LetterService::loadLettersFromCSV(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) return;
+
+    string line;
+    while (getline(file, line)) {
+        Letter letter = Letter::fromCSV(line);
+        storeLetterToMap(letter);
+    }
+
+    file.close();
+}
+
+void LetterService::saveLettersToCSV(const string& filename) {
+    ofstream file(filename, ios::out | ios::trunc);
+    if (!file.is_open()) return;
+
+    map<string, Letter> tempMap = lettersHistoryMap;
+
+    for (const auto& pair : tempMap) {
+        const Letter& letter = pair.second;
+        file << letter.serializeToCSV() << endl;
+    }
+
+    file.close();
+}
+
 void LetterService::loadLetterHistoryStrFromCSV(const string& filename) {
     ifstream file(filename);
     if (!file.is_open()) return;

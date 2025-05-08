@@ -52,6 +52,7 @@
     "xloctime": "cpp",
     "unordered_map": "cpp",
     "sstream": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "map": "cpp"
   },
 }
