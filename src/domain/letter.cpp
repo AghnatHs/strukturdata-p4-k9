@@ -15,7 +15,8 @@ Letter::Letter()
       content(""),
       sender(""),
       status("PENDING"),
-      key(0) {}
+      key(0),
+      processedAt(nullopt) {}
 
 Letter::Letter(string sender, string title, string content)
     : id{generateRandomIdWithPrefix(8, "SURAT")},
@@ -23,7 +24,8 @@ Letter::Letter(string sender, string title, string content)
       status{"PENDING"},
       sender{sender},
       title{title},
-      content{content} {
+      content{content},
+      processedAt(nullopt) {
     this->key = generateRandomInteger(1, 26);
     this->content = Crypto::encrypt(this->content, this->key);
 }
@@ -35,7 +37,8 @@ Letter::Letter(string sender, string title, string content, int key)
       sender{sender},
       title{title},
       content{content},
-      key{key} {}
+      key{key},
+      processedAt(nullopt) {}
 
 string Letter::getId() const { return id; }
 
@@ -45,10 +48,25 @@ string Letter::getFormattedDate() const {
     return oss.str();
 }
 
+string Letter::getFormattedProcessedAt() const {
+    if (!processedAt.has_value()) {
+        return "Belum diproses";
+    }
+    std::ostringstream oss;
+    std::tm* tmPtr = localtime(&processedAt.value());
+    if (tmPtr == nullptr) {
+        return "Waktu tidak valid";
+    }
+    oss << put_time(tmPtr, "%Y-%m-%d %H:%M:%S");
+    return oss.str();
+}
+
 string Letter::serializeToCSV() const {
+    string processedAtStr =
+        processedAt.has_value() ? to_string(processedAt.value()) : "";
     // Format: id,date,title,content,sender,status, key
     return id + "," + to_string(date) + "," + title + "," + content + "," +
-           sender + "," + status + "," + to_string(key);
+           sender + "," + status + "," + to_string(key) + "," + processedAtStr;
 }
 
 Letter Letter::fromCSV(const string& line) {
@@ -65,10 +83,19 @@ Letter Letter::fromCSV(const string& line) {
     letter.date = stoi(tokens[1]);
     letter.status = tokens[5];
 
+    if (tokens.size() > 7 && !tokens[7].empty()) {
+        letter.processedAt = static_cast<time_t>(stol(tokens[7]));
+    }
+
     return letter;
 }
 
-void Letter::changeStatus(string newStatus) { status = newStatus; }
+void Letter::changeStatus(string newStatus) {
+    status = newStatus;
+    if (!processedAt.has_value()) {
+        processedAt = time(nullptr);
+    }
+}
 
 ostream& operator<<(ostream& os, const Letter& letter) {
     os << "==================== Surat ====================" << endl;
@@ -77,7 +104,8 @@ ostream& operator<<(ostream& os, const Letter& letter) {
     os << "Judul    : " << letter.title << endl;
     os << "Pengirim : " << letter.sender << endl;
     os << "Isi      : " << Crypto::decrypt(letter.content, letter.key) << endl;
-    os << "Status   : " << letter.status << endl;
+    os << "Status   : " << letter.status << endl << endl;
+    os << "Diproses : " << letter.getFormattedProcessedAt() << endl;
     os << "================================================" << endl;
     return os;
 }

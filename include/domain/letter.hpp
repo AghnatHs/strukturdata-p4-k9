@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ctime>
+#include <optional>
 #include <string>
 using namespace std;
 
@@ -12,6 +13,7 @@ class Letter {
     string content;
     string sender;
     string status;
+    optional<time_t> processedAt;
 
     int key;
 
@@ -23,6 +25,7 @@ class Letter {
 
     string getId() const;
     string getFormattedDate() const;
+    string getFormattedProcessedAt() const;
     void changeStatus(string newStatus);
 
     string serializeToCSV() const;
