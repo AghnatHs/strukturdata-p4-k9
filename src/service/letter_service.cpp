@@ -129,27 +129,27 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
 }
 
 void LetterService::showAllLettersSortedByStatus() {
-    vector<Letter> allLetters;
+    vector<Letter> letters;
     for (const auto& [id, letter] : lettersHistoryMap) {
-        allLetters.push_back(letter);
+        letters.push_back(letter);
     }
 
-    sort(allLetters.begin(), allLetters.end(), [](const Letter& a, const Letter& b) {
+    sort(letters.begin(), letters.end(), [](const Letter& a, const Letter& b) {
         return a.getStatus() < b.getStatus();
     });
 
-    for (const auto& letter : allLetters) {
+    for (const auto& letter : letters) {
         cout << letter << endl;
     }
 }
 
 void LetterService::showAllLettersSortedByProcessedAt() {
-    vector<Letter> allLetters;
+    vector<Letter> letters;
     for (const auto& [id, letter] : lettersHistoryMap) {
-        allLetters.push_back(letter);
+        letters.push_back(letter);
     }
 
-    sort(allLetters.begin(), allLetters.end(), [](const Letter& a, const Letter& b) {
+    sort(letters.begin(), letters.end(), [](const Letter& a, const Letter& b) {
         if (a.getProcessedAt().has_value() && b.getProcessedAt().has_value()) {
             return a.getProcessedAt().value() < b.getProcessedAt().value();
         }
@@ -162,7 +162,7 @@ void LetterService::showAllLettersSortedByProcessedAt() {
         return false;
     });
 
-    for (const auto& letter : allLetters) {
+    for (const auto& letter : letters) {
         cout << letter << endl;
     }
 }
