@@ -16,13 +16,15 @@ string App::LETTERS_STATUS_HISTORY_CSV_FILEPATH = "./letterStatusHistory.csv";
 void App::run() {
     letterService.loadLettersFromCSV(LETTERS_CSV_FILEPATH);
     letterService.loadLetterQueueFromCSV(LETTERS_QUEUE_CSV_FILEPATH);
-    letterService.loadLetterHistoryStrFromCSV(LETTERS_STATUS_HISTORY_CSV_FILEPATH);
+    letterService.loadLetterHistoryStrFromCSV(
+        LETTERS_STATUS_HISTORY_CSV_FILEPATH);
 }
 
 void App::save() {
     letterService.saveLettersToCSV(LETTERS_CSV_FILEPATH);
     letterService.saveLetterQueueToCSV(LETTERS_QUEUE_CSV_FILEPATH);
-    letterService.saveLetterHistoryStrToCsv(LETTERS_STATUS_HISTORY_CSV_FILEPATH);
+    letterService.saveLetterHistoryStrToCsv(
+        LETTERS_STATUS_HISTORY_CSV_FILEPATH);
 }
 
 bool App::loginStaff(std::unordered_map<std::string, Hash>& staffs) {
@@ -227,7 +229,8 @@ void App::showStaffMenu() {
     cout << "3. Lihat history perubahan surat masuk" << endl;
     cout << "4. Lihat semua surat (sort by status)" << endl;
     cout << "5. Lihat semua surat (sort by waktu proses)" << endl;
-    cout << "6. < Logout" << endl;
+    cout << "6. Lihat semua surat (sort by waktu masuk) (oldest -> newest)" << endl;
+    cout << "7. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -291,6 +294,10 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 6) {
+        letterService.showAllLettersSortedByDate();
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 7) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
