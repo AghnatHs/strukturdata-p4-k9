@@ -23,6 +23,7 @@ class Letter {
     Letter(string sender, string title, string content, int key);  // from csv
     friend ostream &operator<<(ostream &os, const Letter &letter);
 
+    time_t getDate() const;
     string getId() const;
     string getFormattedDate() const;
     string getFormattedProcessedAt() const;

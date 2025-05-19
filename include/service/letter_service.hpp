@@ -34,6 +34,7 @@ class LetterService {
     void loadLetterHistoryStrFromCSV(const string& filename);
     void saveLetterHistoryStrToCsv(const string& filename);
 
+    void showAllLettersSortedByDate();
     void showAllLettersSortedByStatus();
     void showAllLettersSortedByProcessedAt();
 };

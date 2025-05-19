@@ -1,8 +1,8 @@
 #include "service/letter_service.hpp"
 
+#include <algorithm>
 #include <fstream>
 #include <vector>
-#include <algorithm>
 
 #include "utils.hpp"
 
@@ -128,6 +128,21 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
     file.close();
 }
 
+void LetterService::showAllLettersSortedByDate() {
+    vector<Letter> letters;
+    for (const auto& [id, letter] : lettersHistoryMap) {
+        letters.push_back(letter);
+    }
+
+    sort(letters.begin(), letters.end(), [](const Letter& a, const Letter& b) {
+        return a.getDate() < b.getDate();
+    });
+
+    for (const auto& letter : letters) {
+        cout << letter << endl;
+    }
+}
+
 void LetterService::showAllLettersSortedByStatus() {
     vector<Letter> letters;
     for (const auto& [id, letter] : lettersHistoryMap) {
@@ -154,10 +169,8 @@ void LetterService::showAllLettersSortedByProcessedAt() {
             return a.getProcessedAt().value() < b.getProcessedAt().value();
         }
 
-        if (!a.getProcessedAt().has_value())
-            return false;
-        if (!b.getProcessedAt().has_value())
-            return true;
+        if (!a.getProcessedAt().has_value()) return false;
+        if (!b.getProcessedAt().has_value()) return true;
 
         return false;
     });
