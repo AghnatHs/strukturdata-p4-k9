@@ -30,4 +30,7 @@ class Letter {
 
     string serializeToCSV() const;
     static Letter fromCSV(const string &line);
+
+    string getStatus() const;
+    optional<time_t> getProcessedAt() const;
 };
