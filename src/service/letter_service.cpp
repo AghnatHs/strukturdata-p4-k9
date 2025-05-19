@@ -128,15 +128,22 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
     file.close();
 }
 
-void LetterService::showAllLettersSortedByDate() {
+void LetterService::showAllLettersSortedByDate(string sorted) {
     vector<Letter> letters;
     for (const auto& [id, letter] : lettersHistoryMap) {
         letters.push_back(letter);
     }
 
-    sort(letters.begin(), letters.end(), [](const Letter& a, const Letter& b) {
-        return a.getDate() < b.getDate();
-    });
+    sort(letters.begin(), letters.end(),
+         [sorted](const Letter& a, const Letter& b) {
+             if (sorted == "ASCENDING") {
+                 return a.getDate() < b.getDate();
+             } else if (sorted == "DESCENDING") {
+                 return a.getDate() > b.getDate();
+             } else {
+                return a.getDate() < b.getDate();
+             }
+         });
 
     for (const auto& letter : letters) {
         cout << letter << endl;

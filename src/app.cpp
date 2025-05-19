@@ -229,8 +229,11 @@ void App::showStaffMenu() {
     cout << "3. Lihat history perubahan surat masuk" << endl;
     cout << "4. Lihat semua surat (sort by status)" << endl;
     cout << "5. Lihat semua surat (sort by waktu proses)" << endl;
-    cout << "6. Lihat semua surat (sort by waktu masuk) (oldest -> newest)" << endl;
-    cout << "7. < Logout" << endl;
+    cout << "6. Lihat semua surat (sort by waktu masuk) (oldest -> newest)"
+         << endl;
+    cout << "7. Lihat semua surat (sort by waktu masuk) (newest -> oldest)"
+         << endl;
+    cout << "8. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -294,10 +297,14 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 6) {
-        letterService.showAllLettersSortedByDate();
+        letterService.showAllLettersSortedByDate("ASCENDING");
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 7) {
+        letterService.showAllLettersSortedByDate("DESCENDING");
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 8) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
