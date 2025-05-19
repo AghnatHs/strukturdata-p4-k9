@@ -109,3 +109,11 @@ ostream& operator<<(ostream& os, const Letter& letter) {
     os << "================================================" << endl;
     return os;
 }
+
+string Letter::getStatus() const {
+    return status;
+}
+
+optional<time_t> Letter::getProcessedAt() const {
+    return processedAt;
+}

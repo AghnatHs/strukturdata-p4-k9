@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <vector>
+#include <algorithm>
 
 #include "utils.hpp"
 
@@ -125,4 +126,43 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
     }
 
     file.close();
+}
+
+void LetterService::showAllLettersSortedByStatus() {
+    vector<Letter> allLetters;
+    for (const auto& [id, letter] : lettersHistoryMap) {
+        allLetters.push_back(letter);
+    }
+
+    sort(allLetters.begin(), allLetters.end(), [](const Letter& a, const Letter& b) {
+        return a.getStatus() < b.getStatus();
+    });
+
+    for (const auto& letter : allLetters) {
+        cout << letter << endl;
+    }
+}
+
+void LetterService::showAllLettersSortedByProcessedAt() {
+    vector<Letter> allLetters;
+    for (const auto& [id, letter] : lettersHistoryMap) {
+        allLetters.push_back(letter);
+    }
+
+    sort(allLetters.begin(), allLetters.end(), [](const Letter& a, const Letter& b) {
+        if (a.getProcessedAt().has_value() && b.getProcessedAt().has_value()) {
+            return a.getProcessedAt().value() < b.getProcessedAt().value();
+        }
+
+        if (!a.getProcessedAt().has_value())
+            return false;
+        if (!b.getProcessedAt().has_value())
+            return true;
+
+        return false;
+    });
+
+    for (const auto& letter : allLetters) {
+        cout << letter << endl;
+    }
 }

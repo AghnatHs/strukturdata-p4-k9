@@ -225,6 +225,8 @@ void App::showStaffMenu() {
     cout << "1. Lihat antrian surat masuk" << endl;
     cout << "2. Proses antrian surat masuk" << endl;
     cout << "3. Lihat history perubahan surat masuk" << endl;
+    cout << "4. Lihat semua surat (sort by status)" << endl;
+    cout << "5. Lihat semua surat (sort by waktu proses)" << endl;
     cout << "6. < Logout" << endl;
 
     int choice;
@@ -278,6 +280,14 @@ void App::showStaffMenu() {
         } catch (const runtime_error& e) {
             cout << "Belum ada surat masuk yang diproses :)" << endl;
         }
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 4) {
+        letterService.showAllLettersSortedByStatus();
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 5) {
+        letterService.showAllLettersSortedByProcessedAt();
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 6) {
