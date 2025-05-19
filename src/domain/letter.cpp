@@ -40,6 +40,8 @@ Letter::Letter(string sender, string title, string content, int key)
       key{key},
       processedAt(nullopt) {}
 
+time_t Letter::getDate() const { return date; }
+
 string Letter::getId() const { return id; }
 
 string Letter::getFormattedDate() const {
