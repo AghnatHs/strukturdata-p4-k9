@@ -270,6 +270,9 @@ void App::showStaffMenu() {
                      << " Dikeluarkan dari antrian..." << endl;
                 letterService.processIncomingLetter(newStatus);
                 save();
+                cout << "Jika ada kesalahan, silahkan undo dengan memilih menu "
+                        "nomor 8"
+                     << endl;
             } else if (p == 'N') {
                 showStaffMenu();
             }
