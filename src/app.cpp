@@ -233,7 +233,8 @@ void App::showStaffMenu() {
          << endl;
     cout << "7. Lihat semua surat (sort by waktu masuk) (newest -> oldest)"
          << endl;
-    cout << "8. < Logout" << endl;
+    cout << "8. UNDO proses surat masuk" << endl;
+    cout << "9. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -305,6 +306,10 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 8) {
+        // TODO : undo processed letter from stack history
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 9) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
