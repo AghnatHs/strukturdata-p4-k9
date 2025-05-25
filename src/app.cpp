@@ -233,7 +233,8 @@ void App::showStaffMenu() {
          << endl;
     cout << "7. Lihat semua surat (sort by waktu masuk) (newest -> oldest)"
          << endl;
-    cout << "8. < Logout" << endl;
+    cout << "8. UNDO proses surat masuk" << endl;
+    cout << "9. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -269,6 +270,9 @@ void App::showStaffMenu() {
                      << " Dikeluarkan dari antrian..." << endl;
                 letterService.processIncomingLetter(newStatus);
                 save();
+                cout << "Jika ada kesalahan, silahkan undo dengan memilih menu "
+                        "nomor 8"
+                     << endl;
             } else if (p == 'N') {
                 showStaffMenu();
             }
@@ -305,6 +309,27 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 8) {
+        Letter lastProcessedLetter = letterService.getLastProcessedLetter();
+        cout << "> Surat terakhir yang diproses:" << endl;
+        cout << lastProcessedLetter << endl;
+
+        char p;
+        cout << "Undo Proses surat ini?" << endl;
+        cout << "Undo akan mengembalikan surat ini ke antrian" << endl;
+        cout << ("(Y / N) ? : ") << endl;
+        cin >> p;
+
+        if (p == 'Y') {
+            cin.ignore();
+            letterService.undoLastProcessedLetter();
+            save();
+        } else if (p == 'N') {
+            showStaffMenu();
+        }
+
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 9) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;

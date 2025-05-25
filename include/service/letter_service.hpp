@@ -16,6 +16,7 @@ class LetterService {
    public:
     LetterService();
     Letter getIncomingLetter();
+    Letter getLastProcessedLetter();
     void processIncomingLetter(string newStatus);
 
     void sendIncomingLetterToOffice(Letter letter);
@@ -37,4 +38,6 @@ class LetterService {
     void showAllLettersSortedByDate(string sorted);
     void showAllLettersSortedByStatus();
     void showAllLettersSortedByProcessedAt();
+
+    void undoLastProcessedLetter();
 };

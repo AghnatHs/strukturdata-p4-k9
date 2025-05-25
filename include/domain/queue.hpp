@@ -21,6 +21,8 @@ class Queue {
     ~Queue();
 
     void enqueue(const T& value);
+    void enqueueFront(const T& value);
+
     T dequeue();
     T peek() const;
     bool isEmpty() const;

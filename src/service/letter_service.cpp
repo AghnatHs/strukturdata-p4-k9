@@ -12,6 +12,16 @@ Letter LetterService::getIncomingLetter() {
     return incomingLettersQueue.peek();
 };
 
+Letter LetterService::getLastProcessedLetter() {
+    string top = lettersHistoryStr.top();
+    size_t pos = top.find(" | ");
+    string id;
+    if (pos != string::npos) {
+        id = top.substr(0, pos);
+    }
+    return *findLetterById(id);
+}
+
 void LetterService::processIncomingLetter(string newStatus) {
     Letter letter = incomingLettersQueue.peek();
 
@@ -141,7 +151,7 @@ void LetterService::showAllLettersSortedByDate(string sorted) {
              } else if (sorted == "DESCENDING") {
                  return a.getDate() > b.getDate();
              } else {
-                return a.getDate() < b.getDate();
+                 return a.getDate() < b.getDate();
              }
          });
 
@@ -185,4 +195,37 @@ void LetterService::showAllLettersSortedByProcessedAt() {
     for (const auto& letter : letters) {
         cout << letter << endl;
     }
+}
+
+void LetterService::undoLastProcessedLetter() {
+    if (lettersHistoryStr.isEmpty()) {
+        cout << "Tidak ada riwayat surat yang bisa di-undo.\n";
+        return;
+    }
+
+    string top = lettersHistoryStr.top();
+    size_t pos = top.find(" | ");
+    if (pos == string::npos) {
+        cout << "Format riwayat tidak valid.\n";
+        return;
+    }
+
+    string id = top.substr(0, pos);
+
+    auto it = lettersHistoryMap.find(id);
+    if (it == lettersHistoryMap.end()) {
+        cout << "Surat tidak ditemukan dalam riwayat.\n";
+        return;
+    }
+
+    Letter& letter = it->second;
+    letter.changeStatus("PENDING");
+
+    incomingLettersQueue.enqueueFront(letter);
+
+    lettersHistoryStr.pop();
+    lettersHistoryMap[letter.getId()] = letter;
+    cout << "Surat dengan ID " << id
+         << " telah di-undo, status menjadi PENDING, dan dikembalikan ke "
+            "depan antrian.\n";
 }
