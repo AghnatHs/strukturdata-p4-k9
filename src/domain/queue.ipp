@@ -35,6 +35,20 @@ void Queue<T>::enqueue(const T& value) {
 }
 
 template <typename T>
+void Queue<T>::enqueueFront(const T& value) {
+    Node* newNode = new Node(value);
+
+    if (isEmpty()) {
+        front = rear = newNode;
+    } else {
+        newNode->next = front;
+        front = newNode;
+    }
+
+    ++size;
+}
+
+template <typename T>
 T Queue<T>::dequeue() {
     if (isEmpty()) {
         throw out_of_range("Queue is empty");
