@@ -53,6 +53,9 @@
     "unordered_map": "cpp",
     "sstream": "cpp",
     "fstream": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "locale": "cpp",
+    "thread": "cpp",
+    "xlocmes": "cpp"
   },
 }

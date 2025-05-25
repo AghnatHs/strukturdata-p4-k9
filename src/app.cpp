@@ -309,7 +309,24 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 8) {
-        // TODO : undo processed letter from stack history
+        Letter lastProcessedLetter = letterService.getLastProcessedLetter();
+        cout << "> Surat terakhir yang diproses:" << endl;
+        cout << lastProcessedLetter << endl;
+
+        char p;
+        cout << "Undo Proses surat ini?" << endl;
+        cout << "Undo akan mengembalikan surat ini ke antrian" << endl;
+        cout << ("(Y / N) ? : ") << endl;
+        cin >> p;
+
+        if (p == 'Y') {
+            cin.ignore();
+            letterService.undoLastProcessedLetter();
+            save();
+        } else if (p == 'N') {
+            showStaffMenu();
+        }
+
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 9) {
