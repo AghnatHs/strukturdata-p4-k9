@@ -14,6 +14,7 @@ class App {
     static string LETTERS_CSV_FILEPATH;
     static string LETTERS_QUEUE_CSV_FILEPATH;
     static string LETTERS_STATUS_HISTORY_CSV_FILEPATH;
+    static string OUTGOING_LETTERS_QUEUE_CSV_FILEPATH;
 
     void run();
     void save();

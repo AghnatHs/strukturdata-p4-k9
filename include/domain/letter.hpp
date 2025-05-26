@@ -12,6 +12,7 @@ class Letter {
     string title;
     string content;
     string sender;
+    string receiver;
     string status;
     optional<time_t> processedAt;
 
@@ -19,8 +20,8 @@ class Letter {
 
    public:
     Letter();
-    Letter(string sender, string title, string content);
-    Letter(string sender, string title, string content, int key);  // from csv
+    Letter(string sender, string receiver, string title, string content);
+    Letter(string sender, string receiver, string title, string content, int key);  // from csv
     friend ostream &operator<<(ostream &os, const Letter &letter);
 
     time_t getDate() const;

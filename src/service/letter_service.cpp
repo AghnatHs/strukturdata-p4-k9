@@ -39,7 +39,13 @@ void LetterService::sendIncomingLetterToOffice(Letter letter) {
 };
 void LetterService::showIncomingLettersQueue() { incomingLettersQueue.print(); }
 void LetterService::showIncomingLettersHistory() { lettersHistoryStr.print(); }
+void LetterService::sendOutgoingLetter(Letter letter) {
+    outgoingLettersQueue.enqueue(letter);
+};
 
+void LetterService::showOutgoingLettersQueue() {
+    outgoingLettersQueue.print();
+}
 void LetterService::storeLetterToMap(const Letter& letter) {
     lettersHistoryMap[letter.getId()] = letter;
 }
@@ -133,6 +139,34 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
     while (!tempLetterHistoryStr.isEmpty()) {
         file << tempLetterHistoryStr.top() << endl;
         tempLetterHistoryStr.pop();
+    }
+
+    file.close();
+}
+
+void LetterService::loadOutgoingLetterQueueFromCSV(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) return;
+
+    string line;
+    while (getline(file, line)) {
+        Letter letter = Letter::fromCSV(line);
+        outgoingLettersQueue.enqueue(letter);
+    }
+
+    file.close();
+}
+
+void LetterService::saveOutgoingLetterQueueToCSV(const string& filename) {
+    ofstream file(filename, ios::out | ios::trunc);
+    if (!file.is_open()) return;
+
+    Queue<Letter> tempQueue = outgoingLettersQueue;
+
+    while (!tempQueue.isEmpty()) {
+        Letter letter = tempQueue.peek();
+        file << letter.serializeToCSV() << endl;
+        tempQueue.dequeue();
     }
 
     file.close();
