@@ -43,7 +43,7 @@ void LetterService::sendOutgoingLetter(Letter letter) {
     outgoingLettersQueue.enqueue(letter);
 };
 
-void LetterService::showOutgoingLettersQueue(Letter letter) {
+void LetterService::showOutgoingLettersQueue() {
     outgoingLettersQueue.print();
 }
 void LetterService::storeLetterToMap(const Letter& letter) {
