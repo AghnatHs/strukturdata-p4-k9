@@ -14,15 +14,17 @@ Letter::Letter()
       title(""),
       content(""),
       sender(""),
+      receiver(""),
       status("PENDING"),
       key(0),
       processedAt(nullopt) {}
 
-Letter::Letter(string sender, string title, string content)
+Letter::Letter(string sender, string receiver, string title, string content)
     : id{generateRandomIdWithPrefix(8, "SURAT")},
       date{time(nullptr)},
       status{"PENDING"},
       sender{sender},
+      receiver{receiver},
       title{title},
       content{content},
       processedAt(nullopt) {
@@ -30,11 +32,12 @@ Letter::Letter(string sender, string title, string content)
     this->content = Crypto::encrypt(this->content, this->key);
 }
 
-Letter::Letter(string sender, string title, string content, int key)
+Letter::Letter(string sender, string receiver, string title, string content, int key)
     : id{generateRandomIdWithPrefix(8, "SURAT")},
       date{time(nullptr)},
       status{"PENDING"},
       sender{sender},
+      receiver{receiver},
       title{title},
       content{content},
       key{key},
@@ -68,7 +71,7 @@ string Letter::serializeToCSV() const {
         processedAt.has_value() ? to_string(processedAt.value()) : "";
     // Format: id,date,title,content,sender,status, key
     return id + "," + to_string(date) + "," + title + "," + content + "," +
-           sender + "," + status + "," + to_string(key) + "," + processedAtStr;
+           sender + "," + status + "," + to_string(key) + "," + processedAtStr + "," + receiver;
 }
 
 Letter Letter::fromCSV(const string& line) {
@@ -80,7 +83,7 @@ Letter Letter::fromCSV(const string& line) {
         tokens.push_back(token);
     }
 
-    Letter letter(tokens[4], tokens[2], tokens[3], stoi(tokens[6]));
+    Letter letter(tokens[4], tokens[8], tokens[2], tokens[3], stoi(tokens[6]));
     letter.id = tokens[0];
     letter.date = stoi(tokens[1]);
     letter.status = tokens[5];
@@ -105,6 +108,7 @@ ostream& operator<<(ostream& os, const Letter& letter) {
     os << "Tanggal  : " << letter.getFormattedDate() << endl << endl;
     os << "Judul    : " << letter.title << endl;
     os << "Pengirim : " << letter.sender << endl;
+    os << "Penerima : " << letter.receiver << endl;
     os << "Isi      : " << Crypto::decrypt(letter.content, letter.key) << endl;
     os << "Status   : " << letter.status << endl << endl;
     os << "Diproses : " << letter.getFormattedProcessedAt() << endl;

@@ -164,18 +164,21 @@ void App::showGuestMenuSendLetter() {
     cout << "-----------------" << endl;
 
     string sender;
+    string receiver = "Kantor";
     string title;
     string content;
 
     cin.ignore();
+
     cout << "Pengirim    : ";
     getline(cin, sender);
+    cout << "Penerima    : " << receiver << endl;
     cout << "Judul Surat : ";
     getline(cin, title);
     cout << "Isi Surat   : ";
     getline(cin, content);
 
-    Letter letter(sender, title, content);
+    Letter letter(sender, receiver, title, content);
 
     letterService.sendIncomingLetterToOffice(letter);
     letterService.storeLetterToMap(letter);
@@ -239,7 +242,10 @@ void App::showStaffMenu() {
     cout << "7. Lihat semua surat (sort by waktu masuk) (newest -> oldest)"
          << endl;
     cout << "8. UNDO proses surat masuk" << endl;
-    cout << "9. < Logout" << endl;
+    cout << "-------------------------" << endl;
+    cout << "9. Kirim surat keluar" << endl;
+    cout << "10. Lihat semua surat keluar" << endl;
+    cout << "11. < Logout" << endl;
 
     int choice;
     cout << "Pilih Menu : ";
@@ -335,6 +341,44 @@ void App::showStaffMenu() {
         waitForContinueOrExit();
         showStaffMenu();
     } else if (choice == 9) {
+        cout << "------------------------" << endl;
+        cout << "-- Kirim Surat Keluar --" << endl;
+        cout << "------------------------" << endl;
+
+        string sender = "Kantor";
+        string receiver;
+        string title;
+        string content;
+
+        cin.ignore();
+
+        cout << "Pengirim    : Kantor" << endl;
+        cout << "Penerima    : ";
+        getline(cin, receiver);
+        cout << "Judul Surat : ";
+        getline(cin, title);
+        cout << "Isi Surat   : ";
+        getline(cin, content);
+
+        Letter letter(sender, receiver, title, content);
+
+        letterService.sendOutgoingLetter(letter);
+
+        cout << ">>>>>" << endl;
+        cout << letter;
+        cout << ">>>>>" << endl;
+        cout << "ID: " << letter.getId() << endl;
+        cout << "-> Surat anda telah terkirim!" << endl;
+        cout << "-----------------------------------------" << endl;
+        save();
+
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 10) {
+        letterService.showOutgoingLettersQueue();
+        waitForContinueOrExit();
+        showStaffMenu();
+    } else if (choice == 11) {
         showMainMenu();
     } else {
         cout << "Input tidak valid" << endl;
