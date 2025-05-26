@@ -20,6 +20,11 @@ Make sure you have "Make" already installed
 git clone https://github.com/AghnatHs/strukturdata-p4-k9.git
 cd strukturdata-p4-k9
 ```
+2. Add empty *.csv files
+
+```sh
+letters.csv lettersQueue.csv letterStatusHistory.csv outgoingLetters.csv
+```
 
 2. Build project
 
