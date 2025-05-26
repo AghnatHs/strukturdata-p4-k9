@@ -19,6 +19,8 @@ void App::run() {
     letterService.loadLetterQueueFromCSV(LETTERS_QUEUE_CSV_FILEPATH);
     letterService.loadLetterHistoryStrFromCSV(
         LETTERS_STATUS_HISTORY_CSV_FILEPATH);
+    letterService.loadOutgoingLetterQueueFromCSV(
+        OUTGOING_LETTERS_QUEUE_CSV_FILEPATH);
 }
 
 void App::save() {
@@ -26,6 +28,8 @@ void App::save() {
     letterService.saveLetterQueueToCSV(LETTERS_QUEUE_CSV_FILEPATH);
     letterService.saveLetterHistoryStrToCsv(
         LETTERS_STATUS_HISTORY_CSV_FILEPATH);
+    letterService.saveOutgoingLetterQueueToCSV(
+        OUTGOING_LETTERS_QUEUE_CSV_FILEPATH);
 }
 
 bool App::loginStaff(std::unordered_map<std::string, Hash>& staffs) {
