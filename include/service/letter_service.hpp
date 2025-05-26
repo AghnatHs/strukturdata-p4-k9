@@ -9,6 +9,7 @@
 class LetterService {
    private:
     Queue<Letter> incomingLettersQueue;
+    Queue<Letter> outgoingLettersQueue;
 
     map<string, Letter> lettersHistoryMap; // contains all Letters, unprocessed, processed and so on
     Stack<string> lettersHistoryStr; // contains status changed of letter
@@ -22,6 +23,7 @@ class LetterService {
     void sendIncomingLetterToOffice(Letter letter);
     void showIncomingLettersQueue();
     void showIncomingLettersHistory();
+    void sendOutgoingLetter(Letter letter);
 
     void storeLetterToMap(const Letter& letter);
     Letter* findLetterById(const string& id);
