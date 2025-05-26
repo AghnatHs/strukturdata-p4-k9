@@ -43,6 +43,9 @@ void LetterService::sendOutgoingLetter(Letter letter) {
     outgoingLettersQueue.enqueue(letter);
 };
 
+void LetterService::showOutgoingLettersQueue(Letter letter) {
+    outgoingLettersQueue.print();
+}
 void LetterService::storeLetterToMap(const Letter& letter) {
     lettersHistoryMap[letter.getId()] = letter;
 }

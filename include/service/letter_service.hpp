@@ -24,6 +24,7 @@ class LetterService {
     void showIncomingLettersQueue();
     void showIncomingLettersHistory();
     void sendOutgoingLetter(Letter letter);
+    void showOutgoingLettersQueue(Letter letter);
 
     void storeLetterToMap(const Letter& letter);
     Letter* findLetterById(const string& id);
