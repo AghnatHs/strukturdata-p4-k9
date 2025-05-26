@@ -144,6 +144,34 @@ void LetterService::saveLetterHistoryStrToCsv(const string& filename) {
     file.close();
 }
 
+void LetterService::loadOutgoingLetterQueueFromCSV(const string& filename) {
+    ifstream file(filename);
+    if (!file.is_open()) return;
+
+    string line;
+    while (getline(file, line)) {
+        Letter letter = Letter::fromCSV(line);
+        outgoingLettersQueue.enqueue(letter);
+    }
+
+    file.close();
+}
+
+void LetterService::saveOutgoingLetterQueueToCSV(const string& filename) {
+    ofstream file(filename, ios::out | ios::trunc);
+    if (!file.is_open()) return;
+
+    Queue<Letter> tempQueue = outgoingLettersQueue;
+
+    while (!tempQueue.isEmpty()) {
+        Letter letter = tempQueue.peek();
+        file << letter.serializeToCSV() << endl;
+        tempQueue.dequeue();
+    }
+
+    file.close();
+}
+
 void LetterService::showAllLettersSortedByDate(string sorted) {
     vector<Letter> letters;
     for (const auto& [id, letter] : lettersHistoryMap) {

@@ -12,6 +12,7 @@ unordered_map<string, Hash> staffs = {{"admin", hash<string>{}("admin123")}};
 string App::LETTERS_CSV_FILEPATH = "./letters.csv";
 string App::LETTERS_QUEUE_CSV_FILEPATH = "./lettersQueue.csv";
 string App::LETTERS_STATUS_HISTORY_CSV_FILEPATH = "./letterStatusHistory.csv";
+string App::OUTGOING_LETTERS_QUEUE_CSV_FILEPATH = "./outgoingLetters.csv";
 
 void App::run() {
     letterService.loadLettersFromCSV(LETTERS_CSV_FILEPATH);
