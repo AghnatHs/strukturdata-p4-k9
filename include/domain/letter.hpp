@@ -29,6 +29,7 @@ class Letter {
     string getFormattedDate() const;
     string getFormattedProcessedAt() const;
     void changeStatus(string newStatus);
+    void setProcessedAt(optional<time_t> processedAt);
 
     string serializeToCSV() const;
     static Letter fromCSV(const string &line);

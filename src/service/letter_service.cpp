@@ -254,6 +254,7 @@ void LetterService::undoLastProcessedLetter() {
 
     Letter& letter = it->second;
     letter.changeStatus("PENDING");
+    letter.setProcessedAt(nullopt);
 
     incomingLettersQueue.enqueueFront(letter);
 
