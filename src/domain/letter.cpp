@@ -102,6 +102,11 @@ void Letter::changeStatus(string newStatus) {
     }
 }
 
+void Letter::setProcessedAt(optional<time_t> processedAt)
+{
+    this->processedAt = processedAt;
+}
+
 ostream& operator<<(ostream& os, const Letter& letter) {
     os << "==================== Surat ====================" << endl;
     os << "ID       : " << letter.id << endl;
