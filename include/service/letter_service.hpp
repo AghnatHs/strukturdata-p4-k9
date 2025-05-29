@@ -1,6 +1,6 @@
 #pragma once
 
-#include <map>
+#include <unordered_map>
 
 #include "domain/letter.hpp"
 #include "domain/queue.hpp"
@@ -11,7 +11,7 @@ class LetterService {
     Queue<Letter> incomingLettersQueue;
     Queue<Letter> outgoingLettersQueue;
 
-    map<string, Letter> lettersHistoryMap; // contains all Letters, unprocessed, processed and so on
+    unordered_map<string, Letter> lettersHistoryMap; // contains all Letters, unprocessed, processed and so on
     Stack<string> lettersHistoryStr; // contains status changed of letter
 
    public:

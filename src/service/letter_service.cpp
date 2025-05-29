@@ -103,7 +103,7 @@ void LetterService::saveLettersToCSV(const string& filename) {
     ofstream file(filename, ios::out | ios::trunc);
     if (!file.is_open()) return;
 
-    map<string, Letter> tempMap = lettersHistoryMap;
+    unordered_map<string, Letter> tempMap = lettersHistoryMap;
 
     for (const auto& pair : tempMap) {
         const Letter& letter = pair.second;
